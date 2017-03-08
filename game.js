@@ -28,7 +28,7 @@ var enemies = [
 	{x: 300, y: 20, w: 45, h: 30, spd: 5, movement: "hor"},
 	{x: 20, y: 350, w: 45,h: 30, spd: 5, movement: "vert"},
 	{x: 250, y: 425, w: 45, h: 30, spd: 5, movement: "hor"},
-	{x: 360, y: 400, w: 45, h:30, spd: 10, movement: "aroundGoalbox"},
+	//{x: 360, y: 400, w: 45, h:30, spd: 10, movement: "aroundGoalbox"},
 	{x: 800, y: 400, w: 45, h: 30, spd: 1, movement: "followPlayer"}
 ];
 
@@ -71,12 +71,17 @@ processing.draw = function() {
 	}
 
 //draw Enemies
-	processing.fill(230, 20, 20);
 	enemyMove();
+
 	for (var i = 0;i < enemies.length;i++) {
+		if(enemies[i].movement === "followPlayer") {
+			processing.fill(255, 179, 179);
+		} else {
+			processing.fill(230, 20, 20);
+
+		}
 		processing.rect(enemies[i].x, enemies[i].y, enemies[i].w, enemies[i].h);
 	}
-
 //draw goal
 	processing.fill(150, 100, 150);
 	processing.rect(goal.x, goal.y, goal.w, goal.h);
@@ -175,16 +180,16 @@ var enemyMove = function() {
 };
 
 var followPlayer = function(enemy) {
-			if (enemy.x < player.x) {
-				enemy.x += enemy.spd;
-			} else {
-				enemy.x -= enemy.spd;
-			}
-			if (enemy.y < player.y) {
-				enemy.y += enemy.spd;
-			} else {
-				enemy.y -= enemy.spd;
-			}
+	if (enemy.x < player.x) {
+		enemy.x += enemy.spd;
+	} else {
+		enemy.x -= enemy.spd;
+	}
+	if (enemy.y < player.y) {
+		enemy.y += enemy.spd;
+	} else {
+		enemy.y -= enemy.spd;
+	}
 }
 var aroundGoalbox = function(enemy) {
 	
@@ -239,7 +244,6 @@ var canvas = document.getElementById("myCanvas");
 
 
 //Potential things to add to this game
-//make ghost enemy ghost-like
 //add images
 //add goalbox enemy movement
 

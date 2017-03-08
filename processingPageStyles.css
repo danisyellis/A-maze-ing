@@ -1,0 +1,15 @@
+
+#canvas-container {
+   width: 100%;
+   text-align:center;
+}
+
+.myCanvas {
+   display: inline;
+}
+
+body {
+	background-color: #666;
+	color: white;
+	text-align: center;
+}

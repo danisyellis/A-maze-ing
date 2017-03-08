@@ -28,7 +28,7 @@ var enemies = [
 	{x: 300, y: 20, w: 45, h: 30, spd: 5, movement: "hor"},
 	{x: 20, y: 350, w: 45,h: 30, spd: 5, movement: "vert"},
 	{x: 250, y: 425, w: 45, h: 30, spd: 5, movement: "hor"},
-	//{x: 360, y: 400, w: 45, h:30, spd: 10, movement: "aroundGoalbox"},
+	{x: -360, y: 400, w: 45, h:30, spd: 10, movement: "aroundGoalbox"},
 	{x: 800, y: 400, w: 45, h: 30, spd: 1, movement: "followPlayer"}
 ];
 
@@ -73,7 +73,7 @@ processing.draw = function() {
 //draw Enemies
 	enemyMove();
 
-	for (var i = 0;i < enemies.length;i++) {
+	for (var i = 0;i < enemies.length; i++) {
 		if(enemies[i].movement === "followPlayer") {
 			processing.fill(255, 179, 179);
 		} else {

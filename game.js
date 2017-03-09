@@ -1,3 +1,5 @@
+var h2 =document.querySelector("h2");
+
 //player
 var player = {x: 60, y: 110, w: 50, h: 50};
 var up = 0;
@@ -133,8 +135,9 @@ var playerMove = function(speed) {
 	}
 	//did we win?
 	if (collision(player, goal) && codePoints === 3) {
-		alert("You Win! Great job!");
 		reset();
+		h2.innerHTML = "You win! Great job! Want to play again?";
+
 	}
 };
 

@@ -1,7 +1,7 @@
 var h2 =document.querySelector("h2");
 
 //player
-var player = {x: 60, y: 110, w: 50, h: 50};
+var player = {x: 70, y: 110, w: 50, h: 50};
 var up = 0;
 var down = 0;
 var left = 0;
@@ -20,9 +20,9 @@ var wallArray = [
 	{x: 100, y: 250, w: 300, h: 15},
 	{x: 900, y: 5, w: 15, h: 200},
 	//goalbox
-	{x: 420, y: 440, w: 20, h: 90}, //left
-	{x: 560, y: 440, w: 20, h: 90}, //right
-	{x: 440, y: 510, w: 120, h: 20} //bottom
+	{x: 550, y: 380, w: 20, h: 90}, //left
+	{x: 690, y: 380, w: 20, h: 90}, //right
+	{x: 570, y: 450, w: 120, h: 20} //bottom
 ];
 
 //enemies
@@ -30,19 +30,19 @@ var enemies = [
 	{x: 300, y: 20, w: 45, h: 30, spd: 5, movement: "hor"},
 	{x: 20, y: 350, w: 45,h: 30, spd: 5, movement: "vert"},
 	{x: 250, y: 425, w: 45, h: 30, spd: 5, movement: "hor"},
-	{x: -360, y: 400, w: 45, h:30, spd: 10, movement: "aroundGoalbox"},
+	{x: 480, y: 290, w: 45, h:30, spd: 8, movement: "aroundGoalbox", moveNow: 1},
 	{x: 800, y: 400, w: 45, h: 30, spd: 1, movement: "followPlayer"}
 ];
 
 //pickups
 var collectibleCodes = [
 	{x: 200, y: 310, w: 25, h: 25, show: 1},
-	{x: 805, y: 465, w: 25, h: 25, show: 1},
+	{x: 845, y: 465, w: 25, h: 25, show: 1},
 	{x: 220, y: 60, w: 25, h:25, show: 1}
 ];
 var codePoints = 0;
 
-var goal = {x: 490, y: 475, w: 20, h:20};
+var goal = {x: 620, y: 400, w: 20, h:20};
 
 //start Processing
 function sketchProc(processing) {
@@ -195,17 +195,43 @@ var followPlayer = function(enemy) {
 	}
 }
 var aroundGoalbox = function(enemy) {
-	
+	if(enemy.moveNow === 1) {
+		enemy.x += enemy.spd;
+		if(enemy.x === 760) {
+			enemy.moveNow = 2;
+		}
+	}
+	if(enemy.moveNow === 2) {
+		enemy.y += enemy.spd;
+		if(enemy.y === 530) {
+			enemy.moveNow = 3;
+		}
+	}
+	if(enemy.moveNow === 3) {
+		enemy.x -= enemy.spd;
+		if(enemy.x === 480) {
+			enemy.moveNow = 4;
+		}
+	}
+	if(enemy.moveNow === 4) {
+		enemy.y -= enemy.spd;
+		if(enemy.y === 290) {
+			enemy.moveNow = 1;
+		}
+	}
 }
 
 var reset = function() {
-	player.x = 60; player.y = 110;
+	player.x = 70; player.y = 110;
 	codePoints = 0;
 	for (var i = 0; i < collectibleCodes.length; i++) {
 		collectibleCodes[i].show = 1;
 	}
 	enemies[4].x = 800;
 	enemies[4].y = 400;
+	enemies[3].x = 480;
+	enemies[3].y = 290;
+	enemies[3].moveNow = 1;
 }
 
 processing.keyPressed = function() {

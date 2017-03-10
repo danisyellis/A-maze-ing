@@ -13,3 +13,10 @@ body {
 	color: white;
 	text-align: center;
 }
+
+.winner {
+	background-color: #8600b3;
+	text-size: 30px;
+	margin-bottom: 30px;
+	padding: 5px 0px 5px 0px;
+}

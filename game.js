@@ -136,7 +136,9 @@ var playerMove = function(speed) {
 	//did we win?
 	if (collision(player, goal) && codePoints === 3) {
 		reset();
-		h2.innerHTML = "You win! Great job! Want to play again?";
+		h2.innerHTML = "You win! Great job. Play again?";
+		h2.className = "winner";
+
 
 	}
 };
